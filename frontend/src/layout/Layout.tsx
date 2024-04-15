@@ -1,11 +1,14 @@
-import {Outlet} from 'react-router-dom'
 import Footer from './Footer'
+import {ResponsiveProvider, useResponsive} from '../contexts/ResponsiveContext'
+import CustomOutlet from './CustomOutlet'
 
 const Layout = () => {
   return (
     <>
-      <Outlet />
-      <Footer />
+      <ResponsiveProvider>
+        <CustomOutlet />
+        <Footer />
+      </ResponsiveProvider>
     </>
   )
 }
