@@ -1,14 +1,13 @@
+import {Outlet, OutletProps} from 'react-router-dom'
 import Footer from './Footer'
-import {ResponsiveProvider, useResponsive} from '../contexts/ResponsiveContext'
-import CustomOutlet from './CustomOutlet'
+import NavigationBar from './NavigationBar'
 
 const Layout = () => {
   return (
     <>
-      <ResponsiveProvider>
-        <CustomOutlet />
-        <Footer />
-      </ResponsiveProvider>
+      <NavigationBar />
+      <Outlet />
+      <Footer />
     </>
   )
 }

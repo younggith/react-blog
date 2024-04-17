@@ -9,9 +9,6 @@ const defaultContextValue: ContextType = {
   size: ''
 }
 export const ResponsiveContext = createContext<ContextType>(defaultContextValue)
-type ResponsiveProviderProps = {
-  children: React.ReactNode
-}
 
 export const ResponsiveProvider = ({children, ...props}: PropsWithChildren) => {
   const [width] = useWindowResize()
