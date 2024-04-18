@@ -104,28 +104,26 @@ const SignUp = () => {
           </div>
 
           {/* 성별 선택 */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-1">성별</label>
-            <div className="flex space-x-4">
-              <label className="flex items-center space-x-2">
-                <input
-                  type="radio"
-                  className="radio"
-                  {...register('gender')}
-                  value="남자"
-                  defaultChecked
-                />
-                <span>남자</span>
-              </label>
-              <label className="flex items-center space-x-2">
-                <input
-                  type="radio"
-                  className="radio"
-                  {...register('gender')}
-                  value="여자"
-                />
-                <span>여자</span>
-              </label>
+          <div className="flex justify-between mb-4">
+            <label className="text-sm font-medium text-gray-700 mb-1">성별</label>
+            <div role="tablist" className="tabs tabs-bordered">
+              <input
+                type="radio"
+                className="tab"
+                role="tab"
+                aria-label="남자"
+                {...register('gender')}
+                value="남자"
+                defaultChecked
+              />
+              <input
+                type="radio"
+                className="tab"
+                role="tab"
+                aria-label="여자"
+                {...register('gender')}
+                value="여자"
+              />
             </div>
           </div>
 

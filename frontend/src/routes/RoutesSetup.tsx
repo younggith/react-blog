@@ -4,6 +4,7 @@ import Layout from '../layout/Layout'
 import Page404 from './Page404'
 import Login from '../views/Login'
 import SignUp from '../views/SignUp'
+import RequireAuth from '../components/RequireAuth'
 
 const RoutesSetup = () => {
   return (
@@ -12,6 +13,14 @@ const RoutesSetup = () => {
         <Route index element={<LandingPage />} />
         <Route path="*" element={<Page404 />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route
+          path="/board"
+          element={
+            <RequireAuth>
+              <Login />
+            </RequireAuth>
+          }
+        />
       </Route>
       <Route path="/login" element={<Login />} />
       {/* <Route path="/logout" element={<Logout />} /> */}
