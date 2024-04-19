@@ -7,6 +7,7 @@ interface SignUpFormData {
   email: string
   password: string
   passwordConfirmation: string
+  name: string
   gender: '남자' | '여자'
   birthDate: string
   phoneNumber: string
@@ -100,6 +101,18 @@ const SignUp = () => {
               <span className="text-red-500 text-sm">
                 {errors.passwordConfirmation.message}
               </span>
+            )}
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700 mb-1">이름</label>
+            <input
+              type="text"
+              className="input input-bordered w-full"
+              {...register('name', {required: '이름은 필수입니다.'})}
+            />
+            {errors.name && (
+              <span className="text-red-500 text-sm">{errors.name.message}</span>
             )}
           </div>
 

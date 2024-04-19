@@ -5,6 +5,7 @@ import Page404 from './Page404'
 import Login from '../views/Login'
 import SignUp from '../views/SignUp'
 import RequireAuth from '../components/RequireAuth'
+import FindEmailAndPassword from '../views/FindEmailAndPassword'
 
 const RoutesSetup = () => {
   return (
@@ -21,6 +22,7 @@ const RoutesSetup = () => {
             </RequireAuth>
           }
         />
+        <Route path="/find/:path" element={<FindEmailAndPassword />} />
       </Route>
       <Route path="/login" element={<Login />} />
       {/* <Route path="/logout" element={<Logout />} /> */}
