@@ -25,6 +25,10 @@ const MeetList = () => {
     [searchKeyword]
   )
 
+  const handleModalClick = useCallback(() => {
+    console.log('card 클릭')
+  }, [])
+
   return (
     <>
       <div className="my-4 mx-auto w-4/5 mb-4">
@@ -45,6 +49,31 @@ const MeetList = () => {
             title="Lizard"
             subTitle="Lizards are a widespread group of squamate reptiles, with over 6,000
         species, ranging across all continents except Antarctica"
+            onClick={handleModalClick}
+          />
+          <CardComponent
+            title="Lizard"
+            subTitle="Lizards are a widespread group of squamate reptiles, with over 6,000
+        species, ranging across all continents except Antarctica"
+            onClick={handleModalClick}
+          />
+          <CardComponent
+            title="Lizard"
+            subTitle="Lizards are a widespread group of squamate reptiles, with over 6,000
+        species, ranging across all continents except Antarctica"
+            onClick={handleModalClick}
+          />
+          <CardComponent
+            title="Lizard"
+            subTitle="Lizards are a widespread group of squamate reptiles, with over 6,000
+        species, ranging across all continents except Antarctica"
+            onClick={handleModalClick}
+          />
+          <CardComponent
+            title="Lizard"
+            subTitle="Lizards are a widespread group of squamate reptiles, with over 6,000
+        species, ranging across all continents except Antarctica"
+            onClick={handleModalClick}
           />
         </div>
       </div>

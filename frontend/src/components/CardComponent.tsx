@@ -7,11 +7,12 @@ import {CardActionArea} from '@mui/material'
 interface CardProps {
   title: string
   subTitle: string
+  onClick: () => void
 }
 
-const CardComponent = ({title, subTitle}: CardProps) => {
+const CardComponent = ({title, subTitle, onClick: handleModalClick}: CardProps) => {
   return (
-    <Card sx={{maxWidth: 345}}>
+    <Card className={'w-full'} onClick={handleModalClick}>
       <CardActionArea>
         <CardMedia
           component="img"
