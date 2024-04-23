@@ -17,6 +17,8 @@ const initalFormState = {email: '', password: ''}
 const Login = () => {
   const [{email, password}, setForm] = useState<LoginFormType>(initalFormState)
   const [rememberMe, setRememberMe] = useState<boolean>(false)
+  const [emailError, setEmailError] = useState<boolean>(false)
+  const [passwordError, setPasswordError] = useState<boolean>(false)
   const navigate = useNavigate()
   const {login} = useAuth()
 
@@ -27,12 +29,19 @@ const Login = () => {
     []
   )
 
-  const loginAccount = useCallback(() => {
-    if (rememberMe) {
-      localStorage.setItem('rememberMe', 'true')
-    }
-    login(email, password, () => navigate('/'))
-  }, [rememberMe])
+  const loginAccount = useCallback(
+    (e: FormEvent) => {
+      if (rememberMe) localStorage.setItem('rememberMe', 'true')
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+      if (emailRegex.test(email)) {
+        setEmailError(false)
+      } else {
+        setEmailError(true)
+      }
+      login(email, password, () => navigate('/'))
+    },
+    [rememberMe, email, password]
+  )
 
   useEffect(() => {}, [])
 
@@ -53,7 +62,7 @@ const Login = () => {
           </Link>
         </div>
         {/* <form onSubmit={handleSubmit}> */}
-        <div className="mb-4 input input-bordered flex items-center gap-2">
+        <div className="input input-bordered flex items-center gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
@@ -72,7 +81,14 @@ const Login = () => {
             required
           />
         </div>
-        <div className="mb-4 input input-bordered flex items-center gap-2">
+        <div className="mb-4">
+          {emailError && (
+            <span className="text-red-500 text-sm">
+              유효한 이메일 주소를 입력해주세요.
+            </span>
+          )}
+        </div>
+        <div className="input input-bordered flex items-center gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
@@ -93,6 +109,11 @@ const Login = () => {
             placeholder="비밀번호"
             required
           />
+        </div>
+        <div className="mb-4">
+          {passwordError && (
+            <span className="text-red-500 text-sm">비밀번호가 일치하지 않습니다.</span>
+          )}
         </div>
         <div className="mb-4">
           <FormControlLabel

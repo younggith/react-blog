@@ -6,6 +6,8 @@ import Login from '../views/Login'
 import SignUp from '../views/SignUp'
 import RequireAuth from '../components/RequireAuth'
 import FindEmailAndPassword from '../views/FindEmailAndPassword'
+import MeetList from '../views/MeetList'
+import PrivateRoute from '../components/RequireAuth'
 
 const RoutesSetup = () => {
   return (
@@ -18,10 +20,11 @@ const RoutesSetup = () => {
           path="/board"
           element={
             <RequireAuth>
-              <Login />
+              <Page404 />
             </RequireAuth>
           }
         />
+        <Route path="/meet" element={<MeetList />} />
         <Route path="/find/:path" element={<FindEmailAndPassword />} />
       </Route>
       <Route path="/login" element={<Login />} />

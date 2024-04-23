@@ -7,7 +7,9 @@ const RequireAuth = ({children}: PropsWithChildren) => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (!loggedUser) navigate(-1)
+    if (!loggedUser) {
+      navigate('/login')
+    }
   }, [loggedUser, navigate])
 
   return <>{children}</>

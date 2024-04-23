@@ -1,20 +1,10 @@
 import {Link} from '../components/Link'
 import {useNavigate} from 'react-router-dom'
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Typography,
-  Box,
-  IconButton
-} from '@mui/material'
-import {Close} from '@mui/icons-material'
 import {useToggle} from '../hooks/useToggle'
 import {useAuth} from '../contexts/AuthContext'
 import {useCallback} from 'react'
 import {useResponsive} from '../contexts/ResponsiveContext'
+import CustomDialog from '../components/CustomDialog'
 
 const NavigationBar = () => {
   const [open, toggleOpen] = useToggle(false)
@@ -40,14 +30,17 @@ const NavigationBar = () => {
           로그아웃
         </Link>
       </div>
-      <nav className="navbar bg-orange-400 p-2 shadow-lg w-4/5 mx-auto">
+      <nav className="navbar bg-neutral text-neutral-conten p-2 shadow-lg w-4/5 mx-auto">
+        <Link to="/" className="btn btn-ghost text-xl text-white">
+          daisyUI
+        </Link>
         {/* 큰 화면에서 표시할 메뉴 */}
-        <div className="hidden lg:flex navbar-start space-x-4">
-          <Link to="/" className="btn btn-link no-underline">
-            Home
-          </Link>
-          <Link to="/board" className="btn btn-link no-underline">
+        <div className="hidden lg:flex navbar-center space-x-4 ms-16">
+          <Link to="/board" className="btn btn-link no-underline text-white">
             Board
+          </Link>
+          <Link to="/meet" className="btn btn-link no-underline text-white">
+            Meet
           </Link>
         </div>
 
@@ -82,31 +75,22 @@ const NavigationBar = () => {
                   Board
                 </Link>
               </li>
+              <li>
+                <Link to="/meet" className="btn btn-link no-underline">
+                  Meet
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
       </nav>
-      <Dialog open={open} onClose={toggleOpen} maxWidth="sm" fullWidth>
-        <DialogTitle>
-          <Typography variant="h6">로그아웃 확인</Typography>
-        </DialogTitle>
-        <Box position="absolute" top={0} right={0}>
-          <IconButton onClick={toggleOpen}>
-            <Close />
-          </IconButton>
-        </Box>
-        <DialogContent>
-          <Typography variant="subtitle1">정말 로그아웃하시겠습니까?</Typography>
-        </DialogContent>
-        <DialogActions>
-          <Button variant="contained" onClick={toggleOpen} color="error">
-            아니오
-          </Button>
-          <Button variant="contained" onClick={onAccept}>
-            예
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <CustomDialog
+        open={open}
+        toggleOpen={toggleOpen}
+        onAccept={onAccept}
+        title="로그아웃 확인"
+        subTitle="정말 로그아웃하시겠습니까?"
+      />
     </>
   )
 }
