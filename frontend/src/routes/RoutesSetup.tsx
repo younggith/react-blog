@@ -8,6 +8,7 @@ import RequireAuth from '../components/RequireAuth'
 import FindEmailAndPassword from '../views/FindEmailAndPassword'
 import MeetList from '../views/MeetList'
 import PrivateRoute from '../components/RequireAuth'
+import CustomModal from '../components/CustomModal'
 
 const RoutesSetup = () => {
   return (
@@ -20,7 +21,7 @@ const RoutesSetup = () => {
           path="/board"
           element={
             <RequireAuth>
-              <Page404 />
+              <CustomModal open={true} handleClose={() => true} />
             </RequireAuth>
           }
         />

@@ -1,5 +1,6 @@
 import {Link} from '../components/Link'
 import {useNavigate} from 'react-router-dom'
+import Button from '@mui/joy/Button'
 import {useToggle} from '../hooks/useToggle'
 import {useAuth} from '../contexts/AuthContext'
 import {useCallback} from 'react'
@@ -26,9 +27,15 @@ const NavigationBar = () => {
         {/* <Link to="/signup" className="ml-4 btn btn-sm btn-outline btn-primary">
           회원가입
         </Link> */}
-        <Link to="#" className="ml-4 mr-4 btn btn-sm" onClick={toggleOpen}>
+        <Button
+          variant="outlined"
+          color="danger"
+          size="sm"
+          className="ml-4 mr-4"
+          sx={{marginLeft: '1rem'}}
+          onClick={toggleOpen}>
           로그아웃
-        </Link>
+        </Button>
       </div>
       <nav className="navbar bg-neutral text-neutral-conten p-2 shadow-lg w-4/5 mx-auto">
         <Link to="/" className="btn btn-ghost text-xl text-white">
