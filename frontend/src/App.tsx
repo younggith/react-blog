@@ -6,6 +6,7 @@ import RoutesSetup from './routes/RoutesSetup'
 import {ToastContainer} from 'react-toastify'
 import {AuthProvider} from './contexts/AuthContext'
 import {ResponsiveProvider} from './contexts/ResponsiveContext'
+import './scss/style.scss'
 
 const loading = (
   <div className="pt-3 text-center">

@@ -174,64 +174,65 @@ const LandingPage = () => {
   }, [radiusInput, radius])
   return (
     <>
-      <div className="my-4 mx-auto w-4/5">
-        <div className="float-left pb-4">
-          <input
-            type="text"
-            placeholder="반경 크기"
-            className="input input-bordered input-sm max-w-xs"
-            value={radiusInput}
-            onChange={handleInputChange}
-          />
-          <span className="px-4 font-bold">단위(m)</span>
-          <button className="btn btn-sm btn-neutral" onClick={handleRadiusSetting}>
-            설정
-          </button>
-        </div>
-        <div className="float-right">
-          <IconC style={{color: 'orange'}} />
-          반경에 포함된 모임 수: {count}
-        </div>
-      </div>
-      <div
-        className="mx-auto h-screen clear-both"
-        style={{width: '80%', position: 'relative'}}>
-        {/* 지도와 검색 창을 같은 영역에 배치 */}
-        {currentLocation && (
-          <Map
-            center={
-              currentLocation
-                ? {lat: currentLocation.lat, lng: currentLocation.lng}
-                : {lat: 0, lng: 0}
-            }
-            style={{width: '100%', height: '100%'}}
-            level={5}
-            onClick={handleMapClick}>
-            {/* 현재 위치를 표시하는 마커 */}
-            <MapMarker
-              position={
-                markerPosition
-                  ? {lat: markerPosition.lat, lng: markerPosition.lng}
-                  : {lat: 0, lng: 0}
-              }
+      <main>
+        <div className="w-4/5 mx-auto my-4">
+          <div className="float-left pb-4">
+            <input
+              type="text"
+              placeholder="반경 크기"
+              className="max-w-xs input input-bordered input-sm"
+              value={radiusInput}
+              onChange={handleInputChange}
             />
-
-            {/* 반경 1km를 표시하는 원 */}
-            <Circle
+            <span className="px-4 font-bold">단위(m)</span>
+            <button className="btn btn-sm btn-neutral" onClick={handleRadiusSetting}>
+              설정
+            </button>
+          </div>
+          <div className="float-right">
+            <IconC style={{color: 'orange'}} />
+            반경에 포함된 모임 수: {count}
+          </div>
+        </div>
+        <div
+          className="clear-both h-screen mx-auto"
+          style={{width: '80%', position: 'relative'}}>
+          {/* 지도와 검색 창을 같은 영역에 배치 */}
+          {currentLocation && (
+            <Map
               center={
-                markerPosition
-                  ? {lat: markerPosition.lat, lng: markerPosition.lng}
+                currentLocation
+                  ? {lat: currentLocation.lat, lng: currentLocation.lng}
                   : {lat: 0, lng: 0}
               }
-              radius={radius}
-              strokeWeight={3}
-              strokeColor={'#FFA7EF'}
-              fillColor={'#F3CDEF'}
-              fillOpacity={0.5}
-            />
+              style={{width: '100%', height: '100%'}}
+              level={5}
+              onClick={handleMapClick}>
+              {/* 현재 위치를 표시하는 마커 */}
+              <MapMarker
+                position={
+                  markerPosition
+                    ? {lat: markerPosition.lat, lng: markerPosition.lng}
+                    : {lat: 0, lng: 0}
+                }
+              />
 
-            {/* 지도 오른쪽 위에 반경 1km 이내의 좌표 수를 표시하는 요소 */}
-            {/* <div
+              {/* 반경 1km를 표시하는 원 */}
+              <Circle
+                center={
+                  markerPosition
+                    ? {lat: markerPosition.lat, lng: markerPosition.lng}
+                    : {lat: 0, lng: 0}
+                }
+                radius={radius}
+                strokeWeight={3}
+                strokeColor={'#FFA7EF'}
+                fillColor={'#F3CDEF'}
+                fillOpacity={0.5}
+              />
+
+              {/* 지도 오른쪽 위에 반경 1km 이내의 좌표 수를 표시하는 요소 */}
+              {/* <div
               style={{
                 position: 'absolute',
                 top: '10px',
@@ -244,67 +245,68 @@ const LandingPage = () => {
               반경 1km 이내 좌표 수: {count}
             </div> */}
 
-            {/* 지도 왼쪽에 검색창과 검색 결과를 살짝 투명하게 배치 */}
-            <div
-              style={{
-                position: 'absolute',
-                top: '10px',
-                left: '10px',
-                width: '300px',
-                backgroundColor: 'rgba(255, 255, 255, 0.8)', // 투명도 조절
-                padding: '10px',
-                borderRadius: '10px',
-                boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)',
-                height: '95%',
-                zIndex: 2
-              }}>
-              {/* 검색 키워드를 입력할 수 있는 입력 필드 */}
-              <TextField
-                label="검색 키워드"
-                value={searchKeyword}
-                onChange={handleSearchKeywordChange}
-                onKeyDown={handleKeyDown}
-                variant="outlined"
-                fullWidth
-                InputProps={{
-                  endAdornment: <Search />
-                }}
-              />
-
-              {/* 검색 결과를 표시하는 리스트 */}
-              <List
-                className="mt-2"
+              {/* 지도 왼쪽에 검색창과 검색 결과를 살짝 투명하게 배치 */}
+              <div
                 style={{
-                  height: 'calc(100% - 50px)',
-                  overflowY: 'auto',
-                  backgroundColor: 'rgba(255, 255, 255, 0.5)',
-                  borderRadius: '8px',
-                  padding: '8px'
+                  position: 'absolute',
+                  top: '10px',
+                  left: '10px',
+                  width: '300px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.8)', // 투명도 조절
+                  padding: '10px',
+                  borderRadius: '10px',
+                  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)',
+                  height: '95%',
+                  zIndex: 2
                 }}>
-                {/* 검색 결과 항목을 표시 */}
-                {!util.isEmptyOrNull(searchResults) ? (
-                  searchResults.map((result, index) => (
-                    <ListItem
-                      id={'test'}
-                      key={index}
-                      className="hover:bg-gray-100 hover:cursor-pointer"
-                      onClick={() => handleSearchListClick(result.id)}>
-                      <ListItemText
-                        primary={result.name}
-                        secondary={`위도: ${result.lat}, 경도: ${result.lng}`}
-                      />
+                {/* 검색 키워드를 입력할 수 있는 입력 필드 */}
+                <TextField
+                  label="검색 키워드"
+                  value={searchKeyword}
+                  onChange={handleSearchKeywordChange}
+                  onKeyDown={handleKeyDown}
+                  variant="outlined"
+                  fullWidth
+                  InputProps={{
+                    endAdornment: <Search />
+                  }}
+                />
+
+                {/* 검색 결과를 표시하는 리스트 */}
+                <List
+                  className="mt-2"
+                  style={{
+                    height: 'calc(100% - 50px)',
+                    overflowY: 'auto',
+                    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                    borderRadius: '8px',
+                    padding: '8px'
+                  }}>
+                  {/* 검색 결과 항목을 표시 */}
+                  {!util.isEmptyOrNull(searchResults) ? (
+                    searchResults.map((result, index) => (
+                      <ListItem
+                        id={'test'}
+                        key={index}
+                        className="hover:bg-gray-100 hover:cursor-pointer"
+                        onClick={() => handleSearchListClick(result.id)}>
+                        <ListItemText
+                          primary={result.name}
+                          secondary={`위도: ${result.lat}, 경도: ${result.lng}`}
+                        />
+                      </ListItem>
+                    ))
+                  ) : (
+                    <ListItem>
+                      <ListItemText primary="검색된 목록이 없습니다." />
                     </ListItem>
-                  ))
-                ) : (
-                  <ListItem>
-                    <ListItemText primary="검색된 목록이 없습니다." />
-                  </ListItem>
-                )}
-              </List>
-            </div>
-          </Map>
-        )}
-      </div>
+                  )}
+                </List>
+              </div>
+            </Map>
+          )}
+        </div>
+      </main>
     </>
   )
 }
