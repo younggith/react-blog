@@ -72,6 +72,15 @@ const Modal = ({open, handleClose}: CustomModalProps) => {
           <Box sx={{p: 3}}>
             <TabPanel value={value} index={0}>
               <Typography variant="h6">모임 소개</Typography>
+              <textarea
+                className="comm_inp comm_ta"
+                id="content"
+                //   title={labelList?.lab18?.global || "내용 입력"}
+                //   placeholder={labelList?.lab18?.global || "내용 입력"}
+                //   onChange={fnOnChangeInputHandler}
+                //   onBlur={fnOnChangeInputHandler}
+                //   value={complainInfo.content}
+              />
               <Typography>모임 소개 텍스트...</Typography>
               <Button variant="contained" onClick={handleClose} sx={{mt: 2}}>
                 입장하기
